@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropshipping Web Platform Proposal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-x: hidden;
+        }
+
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .slide {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 30px 0;
+            padding: 40px;
+            min-height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #34495e;
+            font-size: 2em;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #4facfe;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #2980b9;
+            font-size: 1.3em;
+            margin: 20px 0 10px 0;
+        }
+
+        .title-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .title-slide h1 {
+            color: white;
+            font-size: 3.5em;
+            margin-bottom: 30px;
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .team-info {
+            font-size: 1.2em;
+            margin-top: 50px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #e0e0e0;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .comparison-table tr:hover {
+            background: #e3f2fd;
+            transform: scale(1.001);
+            transition: all 0.2s ease;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .option-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .option-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .recommended-badge {
+            background: #27ae60;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+        }
+
+        .architecture-diagram {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .architecture-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .arch-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .arch-arrow {
+            font-size: 2em;
+            color: #4facfe;
+            font-weight: bold;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .benefit-item {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            padding: 15px;
+            border-radius: 10px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .benefit-item::before {
+            content: '✅';
+            margin-right: 10px;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .timeline-item {
+            background: #ffffff;
+            border: 2px solid #4facfe;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .timeline-item h4 {
+            color: #2980b9;
+            margin-bottom: 10px;
+        }
+
+        .cost-breakdown {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+
+        .cost-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .cost-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .feature-item {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .feature-detail {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e6f3ff 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #4facfe;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .feature-detail:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .feature-detail h3 {
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        .feature-detail p {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .feature-detail p:last-child {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .summary-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .summary-point {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .next-steps {
+            counter-reset: step-counter;
+        }
+
+        .step-item {
+            counter-increment: step-counter;
+            background: #ffffff;
+            border-left: 5px solid #4facfe;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .step-item::before {
+            content: counter(step-counter);
+            background: #4facfe;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+                margin: 15px 0;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .title-slide h1 {
+                font-size: 2.5em;
+            }
+            
+            .architecture-flow {
+                flex-direction: column;
+            }
+            
+            .arch-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <!-- Slide 1: Title -->
+        <div class="slide title-slide">
+            <div class="slide-number">1</div>
+            <h1>Dropshipping Web Platform Proposal</h1>
+            <div class="subtitle">Building Your Global E-commerce Success</div>
+        </div>
+
+        <!-- Slide 2: Project Overview -->
+        <div class="slide">
+            <div class="slide-number">2</div>
+            <h2>Project Overview</h2>
+            <div class="options-grid">
+                <div class="option-card">
+                    <h3>🎯 Client Goal</h3>
+                    <p>Build a global dropshipping platform operating beyond Kenya with modern, scalable infrastructure.</p>
+                </div>
+                <div class="option-card">
+                    <h3>💡 Desired Outcome</h3>
+                    <p>Branded online store with integrated automation, payment gateways, and global logistics capabilities.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Three Possible Approaches -->
+        <div class="slide">
+            <div class="slide-number">3</div>
+            <h2>Three Possible Approaches</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong><a href="https://www.shopify.com/" target="_blank" style="color: #2c3e50; text-decoration: underline;">Shopify</a> (Hosted)</strong></td>
+                        <td>SaaS platform — fast to set up, but limited flexibility</td>
+                    </tr>
+                    <tr>
+                        <td><strong><a href="https://woocommerce.com/" target="_blank" style="color: #2c3e50; text-decoration: underline;">WooCommerce</a> (WordPress)</strong></td>
+                        <td>Open-source plugin — more control, moderate complexity</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Custom Build</strong></td>
+                        <td>Built fully from scratch — maximum flexibility, longer timeline</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Slide 4: Detailed Comparison -->
+        <div class="slide">
+            <div class="slide-number">4</div>
+            <h2>Detailed Comparison</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Factor</th>
+                        <th><a href="https://www.shopify.com/" target="_blank" style="color: white; text-decoration: underline;">Shopify</a></th>
+                        <th><a href="https://woocommerce.com/" target="_blank" style="color: white; text-decoration: underline;">WooCommerce</a></th>
+                        <th>Custom Build</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Setup Time</strong></td>
+                        <td>2–4 weeks</td>
+                        <td>4–8 weeks</td>
+                        <td>12–20+ weeks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Initial Cost</strong></td>
+                        <td>$2,000–$4,000</td>
+                        <td>$3,000–$7,000</td>
+                        <td>$20,000–$60,000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Monthly Cost</strong></td>
+                        <td>$29–$299 (Shopify) + apps</td>
+                        <td>$30–$80 (hosting + plugins)</td>
+                        <td>Variable (hosting + DevOps ~$100+)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customization</strong></td>
+                        <td>Limited backend</td>
+                        <td>High</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ownership</strong></td>
+                        <td>Shopify-hosted</td>
+                        <td>Fully owned</td>
+                        <td>Fully owned</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Maintenance</strong></td>
+                        <td>Minimal</td>
+                        <td>Moderate</td>
+                        <td>High</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Integrations</strong></td>
+                        <td>Excellent (Shopify apps)</td>
+                        <td>Good (plugins)</td>
+                        <td>Custom APIs required</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Scalability</strong></td>
+                        <td>Excellent</td>
+                        <td>Good</td>
+                        <td>Excellent</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Payments</strong></td>
+                        <td>Built-in (Stripe, PayPal)</td>
+                        <td>Plugin-based (M-Pesa, Stripe)</td>
+                        <td>Custom integration</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Branding Freedom</strong></td>
+                        <td>Medium</td>
+                        <td>High</td>
+                        <td>Full</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Time to Market</strong></td>
+                        <td>Fast</td>
+                        <td>Medium</td>
+                        <td>Long</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Slide 5: Challenges per Approach -->
+        <div class="slide">
+            <div class="slide-number">5</div>
+            <h2>Challenges per Approach</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Platform</th>
+                        <th>Key Limitations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong><a href="https://www.shopify.com/" target="_blank" style="color: #2c3e50; text-decoration: underline;">Shopify</a></strong></td>
+                        <td>Limited backend customization, monthly fees grow with scale</td>
+                    </tr>
+                    <tr>
+                        <td><strong><a href="https://woocommerce.com/" target="_blank" style="color: #2c3e50; text-decoration: underline;">WooCommerce</a></strong></td>
+                        <td>Requires more maintenance, can slow down at scale</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Custom Build</strong></td>
+                        <td>High upfront cost, longer to deliver</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Slide 6: Recommended Approach -->
+        <div class="slide">
+            <div class="slide-number">6</div>
+            <h2>🏆 Recommended Approach — Custom Storefront</h2>
+            <h3>Why This Hybrid Approach Wins:</h3>
+            <div class="benefits-list">
+                <div class="benefit-item">Uses Shopify's backend for stability & reliability</div>
+                <div class="benefit-item">Builds fully custom frontend — 100% your brand</div>
+                <div class="benefit-item">No Shopify UI visible to customers</div>
+                <div class="benefit-item">Speed to market + long-term flexibility</div>
+                <div class="benefit-item">Best of both worlds solution</div>
+                <div class="benefit-item">Future-proof architecture</div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Architecture Overview -->
+        <div class="slide">
+            <div class="slide-number">7</div>
+            <h2>Architecture Overview</h2>
+            <div class="architecture-diagram">
+                <div class="architecture-flow">
+                    <div class="arch-box">
+                        <h4>Custom Frontend</h4>
+                        <p>Next.js/React<br>Your Branding</p>
+                    </div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-box">
+                        <h4>Storefront API</h4>
+                        <p>GraphQL<br>Real-time Data</p>
+                    </div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-box">
+                        <h4>Shopify Backend</h4>
+                        <p>Products, Orders<br>Payments</p>
+                    </div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-box">
+                        <h4>Checkout</h4>
+                        <p>Secure<br>Multi-currency</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Costs -->
+        <div class="slide">
+            <div class="slide-number">8</div>
+            <h2>💰 Investment Breakdown</h2>
+            <div class="cost-breakdown">
+                <div class="cost-item">
+                    <span>Initial Development</span>
+                    <span>$5,000 – $12,000</span>
+                </div>
+                <div class="cost-item">
+                    <span>Shopify Subscription</span>
+                    <span>$39–$105/month</span>
+                </div>
+                <div class="cost-item">
+                    <span>Shopify Apps</span>
+                    <span>$80–$140/month</span>
+                </div>
+                <div class="cost-item">
+                    <span>Domain + Hosting</span>
+                    <span>$10–$50/month</span>
+                </div>
+                <div class="cost-item">
+                    <span>Maintenance (optional)</span>
+                    <span>$100–$300/month</span>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 20px; font-weight: bold; color: #27ae60;">
+                💡 Low monthly recurring costs — Shopify handles all backend hosting
+            </p>
+        </div>
+
+        <!-- Slide 9: Timeline -->
+        <div class="slide">
+            <div class="slide-number">9</div>
+            <h2>⏱️ Timeline to Launch</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Weeks 1-2</h4>
+                    <p><strong>Discovery & Design</strong><br>Requirements gathering, wireframes, client approvals</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Weeks 3-8</h4>
+                    <p><strong>Development</strong><br>Custom frontend build, Shopify API integration</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Weeks 9-10</h4>
+                    <p><strong>Testing & UAT</strong><br>QA testing, user acceptance testing</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Weeks 11-12</h4>
+                    <p><strong>Launch & Training</strong><br>Go live, documentation, team training</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; font-size: 1.2em; font-weight: bold; color: #2980b9;">
+                🚀 Estimated Total: 8–12 weeks to fully functional platform
+            </p>
+        </div>
+
+        <!-- Slide 10: MVP Features -->
+        <div class="slide">
+            <div class="slide-number">10</div>
+            <h2>🎯 MVP Features (Detailed)</h2>
+            
+            <div style="display: grid; gap: 25px; margin-top: 20px;">
+                
+                <div class="feature-detail">
+                    <h3>🎨 1. Custom Branded Storefront</h3>
+                    <p><strong>What it is:</strong> Fully designed website reflecting your brand identity — logo, colors, messaging, and unique look & feel.</p>
+                    <p><strong>Why it matters:</strong> Creates brand trust, makes you stand out from generic themes, allows flexible layouts for future personalization.</p>
+                    <p><em>Tech: <a href="https://nextjs.org/" target="_blank" style="color: #666; text-decoration: underline;">Next.js</a>/<a href="https://react.dev/" target="_blank" style="color: #666; text-decoration: underline;">React</a> with <a href="https://tailwindcss.com/" target="_blank" style="color: #666; text-decoration: underline;">Tailwind CSS</a>, connected to <a href="https://shopify.dev/docs/api/storefront" target="_blank" style="color: #666; text-decoration: underline;">Shopify's Storefront API</a></em></p>
+                </div>
+
+                <div class="feature-detail">
+                    <h3>🔧 2. Shopify Integration (Products, Orders, Payments)</h3>
+                    <p><strong>What it is:</strong> Shopify acts as your backend engine — handling product management, order processing, and secure payments.</p>
+                    <p><strong>Why it matters:</strong> Reliable infrastructure without reinventing eCommerce logic, secure payment flow, automatic tax/receipt handling.</p>
+                    <p><em>Tech: <a href="https://shopify.dev/docs/api/storefront" target="_blank" style="color: #666; text-decoration: underline;">Shopify Storefront API</a> and <a href="https://shopify.dev/docs/api/admin" target="_blank" style="color: #666; text-decoration: underline;">Admin API</a> for products, carts, and order sync</em></p>
+                </div>
+
+                <div class="feature-detail">
+                    <h3>🚚 3. Dropshipping Automation (DSers/Spocket)</h3>
+                    <p><strong>What it is:</strong> Integration with dropshipping apps that automatically connect your store to suppliers worldwide.</p>
+                    <p><strong>Why it matters:</strong> Removes manual order forwarding, auto-syncs inventory and pricing, handles order routing to suppliers.</p>
+                    <p><em>Workflow: Customer buys → Auto-sent to supplier → Supplier ships → Tracking auto-updated</em></p>
+                </div>
+
+                <div class="feature-detail">
+                    <h3>💳 4. Global Payment Options (Stripe, PayPal, M-Pesa)</h3>
+                    <p><strong>What it is:</strong> Multiple secure payment gateways for local and international customers.</p>
+                    <p><strong>Why it matters:</strong> Expands reach beyond Kenya, builds trust with familiar payment methods, ensures local accessibility.</p>
+                    <p><em>Setup: <a href="https://www.shopify.com/payments" target="_blank" style="color: #4facfe; text-decoration: none;">Shopify Payments</a>/<a href="https://stripe.com/" target="_blank" style="color: #4facfe; text-decoration: none;">Stripe</a> for cards, <a href="https://www.paypal.com/" target="_blank" style="color: #4facfe; text-decoration: none;">PayPal</a> for international, M-Pesa integration</em></p>
+                </div>
+
+                <div class="feature-detail">
+                    <h3>📦 5. Shipping & Tracking Integration</h3>
+                    <p><strong>What it is:</strong> Auto-connect to shipping systems for real-time tracking and global rate calculations.</p>
+                    <p><strong>Why it matters:</strong> Customers see live shipping status, reduces support overhead, enables global shipping rates.</p>
+                    <p><em>Flow: Order placed → Supplier ships → Tracking ID to Shopify → Customer notified</em></p>
+                </div>
+
+                <div class="feature-detail">
+                    <h3>📱 6. Social Media Product Sync</h3>
+                    <p><strong>What it is:</strong> Synchronize catalog with Facebook, Instagram, and TikTok Shops for direct social shopping.</p>
+                    <p><strong>Why it matters:</strong> Increases visibility, enables purchase without leaving social apps, allows retargeting ads.</p>
+                    <p><em>Setup: <a href="https://apps.shopify.com/facebook" target="_blank" style="color: #666; text-decoration: underline;">Shopify's built-in Facebook/Instagram integration</a> and <a href="https://apps.shopify.com/tiktok" target="_blank" style="color: #666; text-decoration: underline;">TikTok Shopify App</a></em></p>
+                </div>
+
+                <div class="feature-detail">
+                    <h3>📊 7. Admin Dashboard + Analytics</h3>
+                    <p><strong>What it is:</strong> Monitor key business data — sales, orders, top products, abandoned carts, performance metrics.</p>
+                    <p><strong>Why it matters:</strong> Real-time business insights, data-driven decisions, integrated Google Analytics reporting.</p>
+                    <p><em>Setup: <a href="https://www.shopify.com/admin" target="_blank" style="color: #666; text-decoration: underline;">Shopify Admin</a> backend + optional custom dashboard for unified reporting</em></p>
+                </div>
+
+                <div class="feature-detail">
+                    <h3>📱 8. Responsive Design (Mobile-First)</h3>
+                    <p><strong>What it is:</strong> Perfect functionality across all devices — desktop, tablet, and especially mobile.</p>
+                    <p><strong>Why it matters:</strong> 70%+ of eCommerce is mobile, better UX = higher conversions, improves SEO and ads.</p>
+                    <p><em>Tech: Tailwind CSS responsive components, tested across multiple screen sizes</em></p>
+                </div>
+
+                <div class="feature-detail">
+                    <h3>💬 9. Customer Support Tools</h3>
+                    <p><strong>What it is:</strong> Contact forms, email support integration, and live chat capabilities.</p>
+                    <p><strong>Why it matters:</strong> Builds customer trust, reduces refunds through faster responses, scalable to ticketing systems.</p>
+                    <p><em>Setup: <a href="https://apps.shopify.com/shopify-inbox" target="_blank" style="color: #4facfe; text-decoration: none;">Shopify Inbox</a>, <a href="https://www.tidio.com/" target="_blank" style="color: #4facfe; text-decoration: none;">Tidio</a>, or <a href="https://www.zendesk.com/chat/" target="_blank" style="color: #4facfe; text-decoration: none;">Zendesk Chat</a> integration with shared support email</em></p>
+                </div>
+
+                <div class="feature-detail">
+                    <h3>✉️ 10. Email Signup + Discount System</h3>
+                    <p><strong>What it is:</strong> Email capture forms connected to marketing tools, plus promo/discount system.</p>
+                    <p><strong>Why it matters:</strong> Builds customer list for remarketing, boosts conversions with offers, enables automated campaigns.</p>
+                    <p><em>Setup: <a href="https://www.shopify.com/email" target="_blank" style="color: #4facfe; text-decoration: none;">Shopify Email</a> or <a href="https://www.klaviyo.com/" target="_blank" style="color: #4facfe; text-decoration: none;">Klaviyo</a> / <a href="https://mailchimp.com/" target="_blank" style="color: #4facfe; text-decoration: none;">Mailchimp</a> integration for newsletters and workflows</em></p>
+                </div>
+
+                <div class="feature-detail">
+                    <h3>🔍 11. Basic SEO & Marketing Tools</h3>
+                    <p><strong>What it is:</strong> SEO optimization and integration with Google Analytics, Meta Pixel, and marketing tools.</p>
+                    <p><strong>Why it matters:</strong> Helps store rank in search, enables ad performance tracking, prepares for future campaigns.</p>
+                    <p><em>Setup: Built into Shopify + optional SEO apps and manual frontend optimizations</em></p>
+                </div>
+
+                <div class="feature-detail">
+                    <h3>🔒 12. Secure Hosting & SSL</h3>
+                    <p><strong>What it is:</strong> All pages and transactions run on HTTPS with SSL encryption.</p>
+                    <p><strong>Why it matters:</strong> Ensures customer trust and safety, required for payment compliance, improves search ranking.</p>
+                    <p><em>Setup: Handled automatically by <a href="https://www.shopify.com/" target="_blank" style="color: #4facfe; text-decoration: none;">Shopify</a> backend and hosting provider (<a href="https://vercel.com/" target="_blank" style="color: #4facfe; text-decoration: none;">Vercel</a>/<a href="https://www.netlify.com/" target="_blank" style="color: #4facfe; text-decoration: none;">Netlify</a>)</em></p>
+                </div>
+
+            </div>
+
+            <div style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; padding: 25px; border-radius: 15px; margin-top: 30px; text-align: center;">
+                <h3>✅ MVP Summary</h3>
+                <p>Launches in 8-12 weeks • Covers all critical eCommerce + dropshipping functionality • Leaves room for future growth</p>
+            </div>
+        </div>
+
+        <!-- Slide 11: Technical Challenges & Market Landscape -->
+        <div class="slide">
+            <div class="slide-number">11</div>
+            <h2>⚠️ Technical Challenges & Market Landscape</h2>
+            
+            <h3>Key Technical Challenges in Dropshipping</h3>
+            <table class="comparison-table" style="margin: 20px 0;">
+                <thead>
+                    <tr>
+                        <th>Challenge</th>
+                        <th>Why It Matters</th>
+                        <th>Our Mitigation Strategy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Shipping delays & tracking</strong></td>
+                        <td>Customers expect transparency; long transit times from overseas suppliers damage trust</td>
+                        <td>Use suppliers closer to target markets; reliable tracking integration; clear customer expectations</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Inventory & price sync</strong></td>
+                        <td>Out-of-stock or incorrectly priced items lead to cancelled orders and customer frustration</td>
+                        <td>Real-time API synchronization; automated stock monitoring; fallback supplier options</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Payment gateway limits</strong></td>
+                        <td>Some services don't work globally; regulatory and currency constraints limit sales</td>
+                        <td>Multi-gateway approach: M-Pesa (local) + Stripe/PayPal (international); compliance focus</td>
+                    </tr>
+                    <tr>
+                        <td><strong>User trust & UX</strong></td>
+                        <td>Lower trust when customers can't see/feel products; poor experience damages reputation</td>
+                        <td>High-quality visuals; honest shipping times; excellent customer support; reliable suppliers</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Maintenance & updates</strong></td>
+                        <td>Platform dependencies change; apps update; integrations break over time</td>
+                        <td>Proactive monitoring; stable integration choices; ongoing maintenance plan included</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px;">
+                <div>
+                    <h3>🇰🇪 Local Competitors</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                        <div class="benefit-item" style="margin: 10px 0;">
+                            <strong><a href="https://www.jumia.co.ke/" target="_blank" style="color: #2c3e50; text-decoration: underline;">Jumia Kenya</a></strong> — Major marketplace with millions of users; strong logistics network
+                        </div>
+                        <div class="benefit-item" style="margin: 10px 0;">
+                            <strong><a href="https://www.kilimall.co.ke/" target="_blank" style="color: #2c3e50; text-decoration: underline;">Kilimall</a></strong> — Growing platform with 5M+ app downloads; focuses on affordable pricing
+                        </div>
+                        <div class="benefit-item" style="margin: 10px 0;">
+                            <strong>Local <a href="https://woocommerce.com/" target="_blank" style="color: #2c3e50; text-decoration: underline;">WooCommerce</a>/<a href="https://wordpress.org/" target="_blank" style="color: #2c3e50; text-decoration: underline;">WordPress</a> shops</strong> — Many developers build these; dominant market presence
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>🌍 International Models</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                        <div class="benefit-item" style="margin: 10px 0;">
+                            <strong><a href="https://www.aliexpress.com/" target="_blank" style="color: #2c3e50; text-decoration: underline;">AliExpress</a>/<a href="https://www.alibaba.com/" target="_blank" style="color: #2c3e50; text-decoration: underline;">Alibaba</a>/<a href="https://www.dhgate.com/" target="_blank" style="color: #2c3e50; text-decoration: underline;">DHgate</a></strong> — Primary suppliers & direct competitors for products
+                        </div>
+                        <div class="benefit-item" style="margin: 10px 0;">
+                            <strong><a href="https://www.spocket.co/" target="_blank" style="color: #2c3e50; text-decoration: underline;">Spocket</a>/<a href="https://www.dsers.com/" target="_blank" style="color: #2c3e50; text-decoration: underline;">DSers</a>/<a href="https://printful.com/" target="_blank" style="color: #2c3e50; text-decoration: underline;">Printful</a></strong> — App networks providing dropshipping infrastructure
+                        </div>
+                        <div class="benefit-item" style="margin: 10px 0;">
+                            <strong>Global <a href="https://www.shopify.com/" target="_blank" style="color: #2c3e50; text-decoration: underline;">Shopify</a>/<a href="https://woocommerce.com/" target="_blank" style="color: #2c3e50; text-decoration: underline;">WooCommerce</a> stores</strong> — Proven eCommerce models worldwide
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 25px; border-radius: 15px; margin-top: 30px;">
+                <h3>💡 Our Competitive Advantage</h3>
+                <p><strong>Custom-branded experience</strong> sets you apart from generic marketplaces • <strong>Local payment integration</strong> (M-Pesa) + global reach • <strong>Proven Shopify backend</strong> with custom frontend flexibility • <strong>Faster delivery</strong> through strategic supplier selection • <strong>Professional development team</strong> handling all technical challenges</p>
+            </div>
+        </div>
+
+        <!-- Slide 12: Recommended Shopify Apps -->
+        <div class="slide">
+            <div class="slide-number">12</div>
+            <h2>🧩 Recommended Shopify Apps for MVP</h2>
+            <p style="margin-bottom: 25px; color: #666; font-size: 1.1em;">Ready-made tools to quickly achieve full store functionality without custom coding everything from scratch.</p>
+            
+            <h3>Core Shopify Apps Stack</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>App</th>
+                        <th>Purpose</th>
+                        <th>Monthly Cost (USD)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Supplier Integration</strong></td>
+                        <td><a href="https://www.spocket.co/" target="_blank" style="color: #4facfe; text-decoration: none;">Spocket</a> or <a href="https://www.dsers.com/" target="_blank" style="color: #4facfe; text-decoration: none;">DSers</a></td>
+                        <td>Automate product sourcing, sync stock/prices, and fulfill orders</td>
+                        <td>$0 – $39</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Payments</strong></td>
+                        <td><a href="https://flutterwave.com/" target="_blank" style="color: #4facfe; text-decoration: none;">M-Pesa / Flutterwave</a> + <a href="https://www.shopify.com/payments" target="_blank" style="color: #4facfe; text-decoration: none;">Shopify Payments</a></td>
+                        <td>Enable both local and international payment options</td>
+                        <td>$0 – $15</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Shipping & Tracking</strong></td>
+                        <td><a href="https://www.aftership.com/" target="_blank" style="color: #4facfe; text-decoration: none;">AfterShip</a></td>
+                        <td>Automated shipment tracking and delivery notifications</td>
+                        <td>$11 – $59</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marketing & Social</strong></td>
+                        <td><a href="https://www.facebook.com/business/tools/facebook-shop" target="_blank" style="color: #4facfe; text-decoration: none;">Facebook</a> & <a href="https://business.instagram.com/shopping/" target="_blank" style="color: #4facfe; text-decoration: none;">Instagram Shopping</a></td>
+                        <td>Promote and sell products directly via social platforms</td>
+                        <td>Free</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer Support</strong></td>
+                        <td><a href="https://www.tidio.com/" target="_blank" style="color: #4facfe; text-decoration: none;">Tidio Live Chat</a></td>
+                        <td>Real-time customer chat and basic chatbot support</td>
+                        <td>$0 – $29</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="cost-breakdown" style="margin: 30px 0;">
+                <h3 style="text-align: center; margin-bottom: 15px;">💡 Total Estimated Monthly App Cost</h3>
+                <div style="text-align: center; font-size: 2em; font-weight: bold; color: #27ae60;">
+                    ≈ $80-140/month
+                </div>
+                <p style="text-align: center; color: #666; margin-top: 10px;">
+                    (in addition to Shopify base plan $39–$105)
+                </p>
+            </div>
+
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <strong>Rapid setup</strong> — reduces build time by 4–6 weeks
+                </div>
+                <div class="benefit-item">
+                    <strong>Proven integrations</strong> — reliable and widely used globally
+                </div>
+                <div class="benefit-item">
+                    <strong>Scalable</strong> — easy to swap or upgrade later
+                </div>
+                <div class="benefit-item">
+                    <strong>Cost-effective</strong> — reduces initial development costs
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Future Expansion -->
+        <div class="slide">
+            <div class="slide-number">13</div>
+            <h2>🚀 Future Expansion Possibilities</h2>
+            <div class="benefits-list">
+                <div class="benefit-item">Multi-vendor marketplace setup</div>
+                <div class="benefit-item">Customer loyalty program</div>
+                <div class="benefit-item">Supplier performance tracking</div>
+                <div class="benefit-item">Advanced analytics dashboard</div>
+                <div class="benefit-item">Mobile app version</div>
+                <div class="benefit-item">AI-powered recommendations</div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Summary -->
+        <div class="slide">
+            <div class="slide-number">14</div>
+            <h2>📋 Why This Approach</h2>
+            <div class="summary-points">
+                <div class="summary-point">Launch faster than custom build</div>
+                <div class="summary-point">Fully branded (no Shopify look)</div>
+                <div class="summary-point">Reliable backend with global scalability</div>
+                <div class="summary-point">Lower maintenance costs</div>
+                <div class="summary-point">Future-proof architecture</div>
+                <div class="summary-point">Can evolve into full custom platform</div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Next Steps -->
+        <div class="slide">
+            <div class="slide-number">15</div>
+            <h2>🎯 Next Steps</h2>
+            <div class="next-steps">
+                <div class="step-item">
+                    <strong>Approve recommended approach</strong> and confirm project scope
+                </div>
+                <div class="step-item">
+                    <strong>Finalize feature list for MVP</strong> based on business priorities
+                </div>
+                <div class="step-item">
+                    <strong>Start design and architecture planning</strong> with detailed wireframes
+                </div>
+                <div class="step-item">
+                    <strong>Begin development</strong> with target launch in ~6 weeks
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 40px; font-size: 1.3em; font-weight: bold; color: #27ae60;">
+                Ready to build your global dropshipping success? 🌍
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        // Add some interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling between slides
+            const slides = document.querySelectorAll('.slide');
+            
+            slides.forEach(slide => {
+                slide.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 200);
+                });
+            });
+
+            // Add fade-in animation
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            slides.forEach(slide => {
+                slide.style.opacity = '0';
+                slide.style.transform = 'translateY(50px)';
+                slide.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(slide);
+            });
+        });
+    </script>
+</body>
+</html>
